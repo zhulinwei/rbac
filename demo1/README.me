@@ -1,0 +1,20 @@
+
+admin
+admin表数据结构：
+_id: ObjectId
+roles: Array
+
+role
+role表数据结构：
+_id: ObjectId
+name: String
+permissions: Array
+
+permisson
+permission表数据结构：
+_id: ObjectId
+action: String
+source: String
+
+用户操作某资源 -> 根据用户id获取用户的roles -> 根据roles获取到permissionIds -> 根据permissionIds获取该用户所有的操作许可 -> 判断用户的操作是否在许可中
+缺点：耦合严重，必须先设置权限，再设置角色
