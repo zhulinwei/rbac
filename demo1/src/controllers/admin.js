@@ -2,12 +2,10 @@ const Service = require('../services');
 
 class AdminController {
   async save(ctx, next) {
-    const { name, action, source } = ctx.request.body;
-    if (!name) throw new Error('无效的权限名称');
-    if (!action) throw new Error('无效的权限操作行为');
-    if (!source) throw new Error('无效的权限资源地址');
+    const { roles } = ctx.request.body;
+    if (!roles || roles.length < 1) throw new Error('无效的角色权限');
     
-    await Service.admin.save({ name, action, source });
+    await Service.admin.save({ roles });
   }
 
   async list(ctx, next) {

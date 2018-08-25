@@ -18,3 +18,53 @@ source: String
 
 用户操作某资源 -> 根据用户id获取用户的roles -> 根据roles获取到permissionIds -> 根据permissionIds获取该用户所有的操作许可 -> 判断用户的操作是否在许可中
 缺点：耦合严重，必须先设置权限，再设置角色
+
+准备permissions数据
+POST /permissions
+{
+  "name": "测试",
+  "action": "get",
+  "source": "/test"
+}
+查看permissions
+GET /permissions
+[
+  {
+    "_id": "5b7e40401cba110d62bb444a",
+    "name": "测试",
+    "action": "get",
+    "source": "/test"
+  }
+]
+准备roles数据
+POST /roles
+{
+  "name": "测试角色",
+  "permissions": ["5b7e40401cba110d62bb444a"]
+}
+查看roles数据
+GET /roles
+[
+  {
+    "_id": "5b7e43bd9c5ed40e5f4b0d16",
+    "name": "测试角色",
+    "permissions": ["5b7e40401cba110d62bb444a" ]
+  }
+]
+
+准备admin数据
+POST /admin
+{
+  "roles" : ["5b7e43bd9c5ed40e5f4b0d16"]
+}
+查看admin角色
+GET /admin
+{
+  "_id" : ObjectId("5b813bfbdeeafd147e302754"),
+  "roles" : [ "5b7e43bd9c5ed40e5f4b0d16" ]
+}
+
+测试：
+GET /test
+返回成功结果:通过检查，操作成功
+

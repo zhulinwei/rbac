@@ -22,6 +22,10 @@ class Role {
     return await Model.role.coll.insertOne({ name, permissions });
   }
 
+  async findOne(selector) {
+    return await Model.role.coll.findOne(selector); 
+  }
+
   async list(selector, options) {
     selector = selector || {};
     options = options || {};
@@ -29,10 +33,10 @@ class Role {
   } 
 
   // 用于在入口判断用户是否有资格操作资源
-  async hasRole(role) {
-    const count = await Model.role.count({ name: role });
-    return count > 0;
-  }
+  // async hasRole(role) {
+  //   const count = await Model.role.count({ name: role });
+  //   return count > 0;
+  // }
 }
 
 module.exports = new Role();

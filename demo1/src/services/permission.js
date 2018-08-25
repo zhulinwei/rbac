@@ -1,8 +1,8 @@
 const Model = require('../models');
 
 class Permission {
-  async findOne(selector, options) {
-    return await Model.permission.findOne(selector, options);
+  async find(selector, options) {
+    return await Model.permission.coll.find(selector, options).toArray();
   }
   
   async save(body) {

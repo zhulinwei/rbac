@@ -1,21 +1,16 @@
 const _ = require('lodash');
+const utils = require('../utils');
+const Model = require('../models');
 const Enum = require('../common/enum');
 
 class Admin {
-  constructor() {
-    this.roleTypes = {
-      USER: Enum.RoleTypes.USER,
-      GUEST: Enum.RoleTypes.GUEST,
-      ADMIN: Enum.RoleTypes.ADMIN,
-      SUPER_ADMIN: Enum.RoleTypes.SUPER_ADMIN
-    }; 
-  }
+  async findOne(selector) {
+    return Model.admin.coll.findOne(selector);
+  } 
 
- 
-  async setRole(uid, role) {
-    const exists = _.find(Object.keys(this.roleTypes), roleType => this.roleTypes[roleType] === role);
-    if (!exists) throw new Error('无效的角色类型');
-
+  async save(body) {
+    const roles = body.roles.map(role => utils.newObjectId(role));
+    return await Model.admin.coll.insertOne({ roles }); 
   }
 }
 
