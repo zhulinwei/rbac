@@ -1,18 +1,21 @@
 const Model = require('../models');
 
 class Permission {
-  async find(selector, options) {
-    return await Model.permission.coll.find(selector, options).toArray();
-  }
-  
-  async save(body) {
-    return await Model.permission.coll.insertOne(body);
+  async find (selector, options) {
+    const result = await Model.permission.coll.find(selector, options).toArray();
+    return result;
   }
 
-  async list(selector, options) {
+  async save (body) {
+    const result = await Model.permission.coll.insertOne(body);
+    return result;
+  }
+
+  async list (selector, options) {
     selector = selector || {};
     options = options || {};
-    return await Model.permission.coll.find(selector, options).toArray();
+    const result = await Model.permission.coll.find(selector, options).toArray();
+    return result;
   }
 }
 

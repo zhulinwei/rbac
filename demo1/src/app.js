@@ -1,12 +1,12 @@
 
-const koa = require('koa');
+const Koa = require('koa');
 const PORT = process.env.PORT;
 const { mongo } = require('./databases');
 const bodyParser = require('koa-bodyparser');
 
-const app = new koa();
+const app = new Koa();
 
-async function start() {
+async function start () {
   await mongo.init();
   // 注意：require('./router')必须要在mongo.init()之后，否则model中无法获取到db
   const router = require('./routers');
@@ -22,4 +22,4 @@ start()
   })
   .catch(err => {
     console.log(err);
-  })
+  });

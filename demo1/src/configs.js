@@ -1,10 +1,10 @@
-function getEnv(name) { return process.env[name] };
+function getEnv (name) { return process.env[name]; }
 
 module.exports = {
   mongodb: {
     test: {
-      url: getEnv("MONGODB"),
-      options: {},
-    },
+      url: getEnv('MONGODB'),
+      options: {}
+    }
   }
-}
+};

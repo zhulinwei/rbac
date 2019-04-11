@@ -1,8 +1,8 @@
 const { mongo } = require('../databases');
 
 class Permission {
-  constructor() {
-    this.coll = mongo.dbs.test.collection("permission");
+  constructor () {
+    this.coll = mongo.dbs.test.collection('permission');
   }
 }
 

@@ -2,8 +2,8 @@ const Router = require('koa-router');
 const ctrl = require('../controllers');
 
 class Routers {
-  constructor() {
-    const router = new Router;
+  constructor () {
+    const router = new Router();
 
     // 权限管理
     router.get('/permissions', ctrl.permission.list);
@@ -21,9 +21,8 @@ class Routers {
       ctx.body = '通过检查，操作成功';
     });
 
-    return router; 
+    return router;
   }
 }
 
 module.exports = new Routers();
-
