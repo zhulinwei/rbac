@@ -9,9 +9,7 @@ class AdminController {
   }
 
   async list (ctx, next) {
-    let { selector, options } = ctx.request.body;
-    selector = selector || {};
-    options = options || {};
+    const { selector = {}, options = {} } = ctx.request.body;
     await Service.admin.list(selector, options);
   }
 }
